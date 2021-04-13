@@ -1,13 +1,17 @@
-version: 1
-update_configs:
-  - package_manager: "java:maven"
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "maven"
+    # Look for `package.json` and `lock` files in the `root` directory
     directory: "/"
-    update_schedule: "daily"
-    allowed_updates:
-      - match:
-          update_type: "security"
-    default_reviewers:
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: "daily"
+    # set the maximum number of pull requests to 10 (defaulst is 5)
+    open-pull-requests-limit: 10
+    # raise npm pull requests with the reviewers below
+    reviewers:
       - "nickific"
-    default_labels:
+    # set labels to pull requests triggered by dependabot
+    labels:
       - "security"
-      - "library"
