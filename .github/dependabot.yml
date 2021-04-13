@@ -1,7 +1,13 @@
-version: 2
-updates:
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
+version: 1
+update_configs:
+  - package_manager: "java:maven"
     directory: "/"
-    schedule:
-      interval: "daily"
+    update_schedule: "daily"
+    allowed_updates:
+      - match:
+          update_type: "security"
+    default_reviewers:
+      - "nickific"
+    default_labels:
+      - "security"
+      - "library"
